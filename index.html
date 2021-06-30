@@ -12,8 +12,9 @@
     
     
     <div id="captcha"></div>
-    {{countryCode}}
+    
     <div id="app" class="container">
+        {{countryCode}}
         <div class="mb-3">
             <label for="phoneNumber" class="form-label">Phone Number</label>
             <input type="text" v-model="phoneNumber" class="form-control" id="phoneNumber" placeholder="0xxx xxx xxx" :disabled="isVerified">
