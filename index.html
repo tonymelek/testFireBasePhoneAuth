@@ -4,22 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Firebase Phone Authentication</title>
+    <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
-    <div id="container"></div>
-    <input  type="button" value="Sign in"/>
+    
+    
+    <div id="captcha"></div>
+    <div id="app" class="container">
+        
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Email address</label>
+            <input type="text" v-model="phoneNumber" class="form-control" id="phoneNumber" placeholder="04xx xxx xxx">
+          </div>
+          <div v-if="isVerified"><p class="text-success">{{phoneNumber}} is now verified</p></div>
+          <div v-else>
+              <button class="btn  btn-warning" @click="verify">Verify</button>
+          </div>
+          
 
-
+    </div>
+    
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-
     <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
-  
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script> 
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-
-<script src="./firebase.js"></script>
+    
+    <script type="module" src="./app.js"></script>
+    <!-- <script src="./firebase.js"></script> -->
 </body>
 </html>
