@@ -27,6 +27,8 @@ const app = {
                 const userCountry=countryCodes.find(country=>country.TwoLetterCode=== res.data.country);
                 this.countryCode=`+${userCountry.Code}`
                 this.twoLetterCode=userCountry.TwoLetterCode
+            }).catch(err=>{
+                this.twoLetterCode=err.response.data
             })
             
            
