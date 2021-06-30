@@ -15,14 +15,14 @@
     <div id="app" class="container">
         
         <div class="mb-3">
-            <label for="phoneNumber" class="form-label">Email address</label>
+            <label for="phoneNumber" class="form-label">Phone Number</label>
             <input type="text" v-model="phoneNumber" class="form-control" id="phoneNumber" placeholder="04xx xxx xxx">
           </div>
           <div v-if="isVerified"><p class="text-success">{{phoneNumber}} is now verified</p></div>
           <div v-else>
               <button class="btn  btn-warning" @click="verify">Verify</button>
           </div>
-          
+
 
     </div>
     
