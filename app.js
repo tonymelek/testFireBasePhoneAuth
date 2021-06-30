@@ -10,7 +10,8 @@ const app = {
             appVerifier:null,
             error:'',
             displayError:false,
-            countryCode:''
+            countryCode:'',
+            twoLetterCode:''
         }
     },
     created() {
@@ -25,6 +26,7 @@ const app = {
             axios.get('https://ipapi.co/json').then(res=>{
                 const userCountry=countryCodes.find(country=>country.TwoLetterCode=== res.data.country);
                 this.countryCode=`+${userCountry.Code}`
+                this.twoLetterCode=userCountry.TwoLetterCode
             })
             
            
