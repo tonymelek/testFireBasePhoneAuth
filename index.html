@@ -13,16 +13,17 @@
     
     <div id="captcha"></div>
     <div id="app" class="container">
-        
         <div class="mb-3">
             <label for="phoneNumber" class="form-label">Phone Number</label>
-            <input type="text" v-model="phoneNumber" class="form-control" id="phoneNumber" placeholder="04xx xxx xxx">
+            <input type="text" v-model="phoneNumber" class="form-control" id="phoneNumber" placeholder="0xxx xxx xxx" :disabled="isVerified">
           </div>
           <div v-if="isVerified"><p class="text-success">{{phoneNumber}} is now verified</p></div>
           <div v-else>
               <button class="btn  btn-warning" @click="verify">Verify</button>
           </div>
-
+          <div v-if="displayError" class="text-danger">
+              {{error}}
+          </div>
 
     </div>
     
@@ -32,7 +33,7 @@
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="./app.js"></script>
     <!-- <script src="./firebase.js"></script> -->
 </body>

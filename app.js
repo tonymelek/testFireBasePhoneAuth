@@ -1,5 +1,5 @@
 import { firebaseConfig } from "./firebase.js"
-
+import countryCodes from './countryCodes.js'
 
 const app = {
     data() {
@@ -8,7 +8,9 @@ const app = {
             isVerified:false,
             message:'',
             appVerifier:null,
-            error:''
+            error:'',
+            displayError:false,
+            countryCode:''
         }
     },
     created() {
@@ -19,15 +21,27 @@ const app = {
         // Initialize Recaptcha
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('captcha',{'size':'invisible'});
         this.appVerifier = window.recaptchaVerifier;
+       
+            axios.get('https://ipapi.co/json').then(res=>{
+                const userCountry=countryCodes.find(country=>country.TwoLetterCode=== res.data.country);
+                this.countryCode=`+${userCountry.Code}`
+            })
+            
+           
+        
 
+   
+            
+     
     },
     mounted() {
 
     },
     methods: {
         verify(){
+            this.error=''
             this.phoneNumber=`+61${this.phoneNumber.split(' ').join('').slice(1)}`
-            firebase.auth().signInWithPhoneNumber(this.phoneNumber.split(' ').join(''), this.appVerifier)
+            firebase.auth().signInWithPhoneNumber(this.phoneNumber, this.appVerifier)
             .then(confirmationResult => {
                 console.log(confirmationResult);
               // SMS sent. Prompt user to type the code from the message, then sign the
@@ -42,7 +56,8 @@ const app = {
               // ...
             }).catch((error) => {
               // Error; SMS not sent
-              console.log(error);
+              this.displayError=true
+              if (error.code === 'auth/invalid-verification-code') this.error="You entered wrong OTP"
               // ...
             }); 
         }
