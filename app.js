@@ -40,7 +40,7 @@ const app = {
     methods: {
         verify(){
             this.error=''
-            this.phoneNumber=`+61${this.phoneNumber.split(' ').join('').slice(1)}`
+            this.phoneNumber=`${this.countryCode}${this.phoneNumber.split(' ').join('').slice(1)}`
             firebase.auth().signInWithPhoneNumber(this.phoneNumber, this.appVerifier)
             .then(confirmationResult => {
                 console.log(confirmationResult);
