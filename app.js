@@ -56,7 +56,9 @@ const app = {
               // ...
             }).catch((error) => {
               // Error; SMS not sent
+              console.log(error)
               this.displayError=true
+              this.error=error.code
               if (error.code === 'auth/invalid-verification-code') this.error="You entered wrong OTP"
               // ...
             }); 
