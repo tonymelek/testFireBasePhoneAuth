@@ -28,7 +28,7 @@ const app = {
                 this.countryCode=`+${userCountry.Code}`
                 this.twoLetterCode=userCountry.TwoLetterCode
             }).catch(err=>{
-                this.twoLetterCode=err.response.data
+                this.twoLetterCode="error"
             })
             
            
